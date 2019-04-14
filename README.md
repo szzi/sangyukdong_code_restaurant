@@ -1,2 +1,4 @@
 # sangyukdong_code_restaurant
-팀프 웅앵웅
+
+We create restaurant management system.
+It includes reservation,calculation...
