@@ -136,7 +136,7 @@ public class Check extends JFrame {
 				int count=1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_0&& count==1) {
-						(order1).setCount(0);
+					
 						textArea.append(String.format("불고기버거 2000원  %d개\n",n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -151,6 +151,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 				}
 					count++;
+					order1.setCount(0);
 				}
 				
 			});
@@ -162,7 +163,7 @@ public class Check extends JFrame {
 				int count=1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_1 && count==1) {
-						order1.setCount(1);
+					
 						textArea.append(String.format("치킨버거    3000원  %d개\n", n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -175,6 +176,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
 					count++;	
+					order1.setCount(1);
 				}
 			});
 	
@@ -185,7 +187,7 @@ public class Check extends JFrame {
 				int count=1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_2 && count == 1) {
-						order1.setCount(2);
+						
 						textArea.append(String.format("치즈버거    2000원 %d개\n", n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -199,6 +201,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
 					count++;
+					order1.setCount(2);
 				}
 			});
 			button_2.setBounds(406, 37, 158, 98);
@@ -209,7 +212,7 @@ public class Check extends JFrame {
 				int count = 1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_3 && count ==1 ) {
-						order1.setCount(3);
+						
 						textArea.append(String.format("통새우버거 4000원  %d개\n",n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -223,6 +226,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
 					count++;
+					order1.setCount(3);
 				}
 			});
 			button_3.setBounds(25, 176, 158, 98);
@@ -233,7 +237,7 @@ public class Check extends JFrame {
 				int count = 1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_4 && count ==1 ) {
-						order1.setCount(4);
+						
 						textArea.append(String.format("한우버거    4500원   %d개\n",n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -247,6 +251,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
 					count++;
+					order1.setCount(4);
 				}
 			});
 			button_4.setBounds(219, 176, 158, 98);
@@ -257,7 +262,7 @@ public class Check extends JFrame {
 				int count = 1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_5 && count ==1 ) {
-						order1.setCount(5);
+						
 						textArea.append(String.format("강정버거    4000원  %d개\n",n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -271,6 +276,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
 					count++;
+					order1.setCount(5);
 				}
 			});
 			button_5.setBounds(406, 176, 158, 98);
@@ -286,7 +292,7 @@ public class Check extends JFrame {
 				int count = 1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_6 &&count == 1) {
-						order1.setCount(6);
+					
 						textArea.append(String.format("감자튀김    1500원   %d개\n",n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -299,6 +305,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
 					count++;
+					order1.setCount(6);
 				}
 			});
 			button_6.setBounds(25, 37, 158, 98);
@@ -309,7 +316,7 @@ public class Check extends JFrame {
 				int count = 1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_7 &&count ==1) {
-						order1.setCount(7);
+					
 						textArea.append(String.format("아이스크림   500원    %d개\n",n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -323,6 +330,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
 					count++;
+					order1.setCount(7);
 				}
 			});
 			button_7.setBounds(219, 37, 158, 98);
@@ -333,7 +341,7 @@ public class Check extends JFrame {
 				int count = 1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_8 && count ==1 ) {
-						order1.setCount(8);
+					
 						textArea.append(String.format("스낵랩        2500원      %d개\n",n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -347,6 +355,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
 					count++;
+					order1.setCount(8);
 				}
 			});
 			button_8.setBounds(406, 37, 158, 98);
@@ -361,7 +370,7 @@ public class Check extends JFrame {
 				int count = 1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_9 && count == 1) {
-						order1.setCount(9);
+						
 						textArea.append(String.format("콜라            1000원     %d개\n", n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -375,6 +384,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
 					count++;
+					order1.setCount(9);
 				}
 			});
 			button_9.setBounds(25, 37, 158, 98);
@@ -385,7 +395,7 @@ public class Check extends JFrame {
 				int count = 1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_10 && count ==1 ) {
-						order1.setCount(10);
+						
 						textArea.append(String.format("사이다         1000원      %d개\n",n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -399,6 +409,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
 					count++;
+					order1.setCount(10);
 				}
 			});
 			button_10.setBounds(219, 37, 158, 98);
@@ -410,7 +421,7 @@ public class Check extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 				
 				if((JButton) arg0.getSource() == button_11 && count ==1) {
-					order1.setCount(11);
+					
 					textArea.append(String.format("환타            1000원    %d개\n",n));
 					textArea.append(String.format("-----------------------------------------------\n"));
 				}
@@ -424,6 +435,7 @@ public class Check extends JFrame {
 					textArea.append(String.format("-----------------------------------------------\n"));
 				}
 				count++;
+				order1.setCount(11);
 				}
 			});
 			button_11.setBounds(406, 37, 158, 98);
@@ -434,7 +446,7 @@ public class Check extends JFrame {
 				int count = 1;
 				public void actionPerformed(ActionEvent arg0) {
 					if((JButton) arg0.getSource() == button_12 && count ==1) {
-						order1.setCount(12);
+						
 						textArea.append(String.format("마운틴듀     1000원    %d개\n",n));
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
@@ -448,6 +460,7 @@ public class Check extends JFrame {
 						textArea.append(String.format("-----------------------------------------------\n"));
 					}
 					count++;
+					order1.setCount(12);
 				}
 			});
 			button_12.setBounds(25, 176, 158, 98);
