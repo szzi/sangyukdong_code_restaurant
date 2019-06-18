@@ -1,13 +1,9 @@
 package restaurant;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -15,17 +11,12 @@ import javax.swing.table.TableColumnModel;
 
 import java.awt.CardLayout;
 import java.awt.GridLayout;
-import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import java.util.Arrays;
 import java.util.Vector;
 import java.awt.Font;
-import java.awt.Component;
-import javax.swing.Box;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
@@ -37,25 +28,30 @@ public class Sales extends JFrame {
 	 * Launch the application.
 	 */
 	
-	/**
-	 * Create the frame.
-	 */
-	public Sales() {			
-			
+	public Sales(){	
+		run();
+	}
+	
+	public void run() {			
 		p2 = new JPanel();
 			//Order order = new Order();
+		Color color = new Color(254,206,0);
+		Color color2 = new Color(235,229,217);
+		Color backcolor = new Color(245,245,245);
+		
 		String header1[]= {"상품명","수량","금액"};
 
 //		매출 순이익 확인 테이블
 		DefaultTableModel model1 = new DefaultTableModel(header1,0);
 		JTable stable = new JTable(model1);
+		stable.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		int totalsales=0;
 		int profitsales=0;
 		int pprofit=0;
 		stable.setRowHeight(30);
 		
 		for(int i = 0; i<MakeMenu.menu.length;i++) {
-			System.out.printf("%d,",MakeMenu.menu[i].sold);
+			System.out.printf("Sales: %s %d,",MakeMenu.menu[i].name,MakeMenu.menu[i].sold);
 			if(MakeMenu.menu[i].sold!=0) {
 				Vector<Object> contents1 = new Vector<Object>();
 				contents1.addElement(MakeMenu.menu[i].name);
@@ -74,6 +70,8 @@ public class Sales extends JFrame {
 		total.addElement(totalsales);
 		totalmodel.addRow(total);
 		JTable totaltable = new JTable(totalmodel);
+		totaltable.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		totaltable.setRowHeight(50);
 		
 		String profitheader[]= {"순이익"};
 		DefaultTableModel profitmodel = new DefaultTableModel(profitheader,0);
@@ -81,6 +79,8 @@ public class Sales extends JFrame {
 		profit.addElement(pprofit);
 		profitmodel.addRow(profit);
 		JTable profittable = new JTable(profitmodel);
+		profittable.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		profittable.setRowHeight(50);
 		
 		  TableColumnModel columnModel = stable.getColumnModel();
 		  TableColumn column0 = columnModel.getColumn(0); 
@@ -105,7 +105,8 @@ public class Sales extends JFrame {
 		String mainrank[]= {"순위","수량","주메뉴"};
 		DefaultTableModel model2 = new DefaultTableModel(mainrank,0);
 		JTable maintable = new JTable(model2);
-		maintable.setFont(new Font("굴림", Font.PLAIN, 13));
+		maintable.setRowHeight(30);
+		maintable.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		maintable.setRowHeight(30);
 //		순위 매기기 소팅
 		sort(0,5);
@@ -125,7 +126,8 @@ public class Sales extends JFrame {
 		String siderank[]= {"순위","수량","사이드메뉴"};
 		DefaultTableModel model3 = new DefaultTableModel(siderank,0);
 		JTable sidetable = new JTable(model3);
-		sidetable.setFont(new Font("굴림", Font.PLAIN, 13));
+		sidetable.setRowHeight(30);
+		sidetable.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		sidetable.setRowHeight(30);
 //		순위 매기기 소팅
 		sort(6,8);
@@ -145,7 +147,8 @@ public class Sales extends JFrame {
 		String drinkrank[]= {"순위","수량","음료"};
 		DefaultTableModel model4 = new DefaultTableModel(drinkrank,0);
 		JTable drinktable = new JTable(model4);
-		drinktable.setFont(new Font("굴림", Font.PLAIN, 13));
+		drinktable.setRowHeight(30);
+		drinktable.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		drinktable.setRowHeight(30);
 //		순위 매기기 소팅
 		sort(9,12);
@@ -196,7 +199,7 @@ public class Sales extends JFrame {
 		//contentPane.setLayout(new CardLayout(0, 0));
 		
 		
-		p2.setBackground(new Color(255, 228, 225));
+		p2.setBackground(backcolor);
 		p2.setForeground(Color.BLACK);
 		//contentPane.add(p2, "name_359157631449594");
 		p2.setLayout(null);
@@ -214,7 +217,7 @@ public class Sales extends JFrame {
 		sales_panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane(stable);
-		scrollPane.setBounds(0, 0, 996, 357);
+		scrollPane.setBounds(12, 0, 984, 357);
 		sales_panel.add(scrollPane);
 		
 //		p2판은 gridlayout으로 할게
@@ -234,7 +237,7 @@ public class Sales extends JFrame {
 		ranking_panel.add(label);
 		
 		JPanel Buttonpanel = new JPanel();
-		Buttonpanel.setBounds(0, 535, 996, 75);
+		Buttonpanel.setBounds(10, 535, 986, 75);
 		p2.add(Buttonpanel);
 		
 //		Contentspanel에 panel 추가
@@ -247,17 +250,20 @@ public class Sales extends JFrame {
 		//		table cell 높이 조정
 				totaltable.setRowHeight(30);
 				profittable.setRowHeight(30);
-				panel.setLayout(new GridLayout(0, 1, 0, 0));
+				panel.setLayout(null);
 				JScrollPane totalscrollPane = new JScrollPane(totaltable);
+				totalscrollPane.setBounds(12, 0, 984, 81);
 				panel.add(totalscrollPane);
 				
 				JScrollPane profitscrollPane = new JScrollPane(profittable);
+				profitscrollPane.setBounds(12, 81, 984, 81);
 				panel.add(profitscrollPane);
 		Contentspanel.add("bb",ranking_panel);
 		
 //		버튼
 		JButton Sales = new JButton("매출 / 순이익");
-		Sales.setFont(new Font("굴림", Font.PLAIN, 15));
+		Sales.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		Sales.setBackground(color);
 		Sales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					card.show(Contentspanel,"aa");
@@ -267,7 +273,8 @@ public class Sales extends JFrame {
 		Buttonpanel.add(Sales);
 		
 		JButton Ranking = new JButton("판매순위");
-		Ranking.setFont(new Font("굴림", Font.PLAIN, 15));
+		Ranking.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		Ranking.setBackground(color);
 		Ranking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				card.show(Contentspanel,"bb");
@@ -276,7 +283,8 @@ public class Sales extends JFrame {
 		Buttonpanel.add(Ranking);
 		
 		JButton BackButton = new JButton("뒤로가기");
-		BackButton.setBackground(new Color(221, 160, 221));
+		BackButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		BackButton.setBackground(color);
 		BackButton.setForeground(Color.BLACK);
 		BackButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -284,7 +292,7 @@ public class Sales extends JFrame {
 				Test.card.show(Test.f,"main_screen");
 			}
 		});
-		BackButton.setBounds(14, 638, 149, 68);
+		BackButton.setBounds(12, 629, 240, 68);
 		p2.add(BackButton);
 		
 	}

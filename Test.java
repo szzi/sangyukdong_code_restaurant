@@ -1,21 +1,25 @@
 package restaurant;
 
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import java.awt.CardLayout;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class Test extends Frame implements ActionListener{
 	
 	static Frame f;
 	public static CardLayout card;
+	MainScreen mainscreen;
+	Sales sales;
+	Receipt receipt;
+	Reservation reservation;
 	//JPanel contentPane;
 	//private JPanel contentPane;
 
@@ -28,13 +32,7 @@ public class Test extends Frame implements ActionListener{
 				try {
 					
 					@SuppressWarnings("unused")
-					Test frame = new Test();
-					
-					//frame.setSize(1024,768);
-					//frame.setVisible(true);
-					MakeMenu makemenu = new MakeMenu();
-					makemenu.create();
-					
+					Test frame = new Test();										
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,51 +47,46 @@ public class Test extends Frame implements ActionListener{
 	 * Create the frame.
 	 */
 	Test(){
-		
+		Color color = new Color(254,206,0);	
 	f = new Frame();
 	card = new CardLayout(0,0);
-	
-	JPanel p3;	
-	
+	MakeMenu makemenu = new MakeMenu();
+	makemenu.create();
 	
 	f.setLayout(card);
 	
-	MainScreen mainscreen = new MainScreen();
-	Sales sales = new Sales();
-	//p1 = new JPanel();
-	//p2 = new JPanel();
-	p3 = new JPanel();
+	mainscreen = new MainScreen();
+	sales = new Sales();
+	receipt = new Receipt();
+	reservation = new Reservation();
 	
 	JButton btn1,btn2,btn3;
 	
+	btn1 = new JButton("정산");
 	btn2= new JButton("영수증 출력");	
 	btn3 = new JButton("예약/자리 확인");
-	btn1 = new JButton("정산");
-	
-	
+		
 	btn1.addActionListener(this);
 	btn2.addActionListener(this);
 	btn3.addActionListener(this);
+
+	btn1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+	btn2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+	btn3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 	
-	//mainscreen.add("a",btn1);
-	
+	btn1.setBackground(color);
+	btn2.setBackground(color);
+	btn3.setBackground(color);
 	btn1.setBounds(521,594,159,75);
-	//total_count.addActionListener(new ActionListener());
-	
+	btn2.setBounds(47, 594, 159, 75);
+	btn3.setBounds(768, 594, 159, 75);
 	
 	mainscreen.panel_4.add(btn1);
-	
-	//p2.add("b",btn2);
-	p3.add("c",btn3);
-	
-	
-	
-	//p2.setLayout(new FlowLayout(FlowLayout.CENTER));
-	p3.setLayout(new FlowLayout(FlowLayout.CENTER));
+	mainscreen.panel_4.add(btn2);
+	mainscreen.panel_4.add(btn3);
 	
 	f.add("main_screen",mainscreen.p1);
-	f.add("reservation",sales.p2);
-	f.add("sales",sales.p2);
+	f.add("reservation",reservation.p3);
 	
 	card.show(f, "main_screen");
 	
@@ -112,17 +105,18 @@ public class Test extends Frame implements ActionListener{
 		// TODO Auto-generated method stub
 		String str = e.getActionCommand();
 		  if(str.equals("영수증 출력")){
-		   card.show(f,"receipt"); //이와같은 방법으로 다른 카드(Panel)로의 변환이 가능하다.
-		  }
-		  else if(str.equals("결제")){
-		   card.show(f,"");
+			  receipt.run();
+			  //이와같은 방법으로 다른 카드(Panel)로의 변환이 가능하다.
 		  }
 		  else if(str.equals("정산")){
-		   Sales sales1 = new Sales();
-		   f.add("sales",sales1.p2);
-		   card.show(f,"sales");
+			  sales.run();
+			  f.add("sales",sales.p2);
+			  card.show(f,"sales");
 		  }
 		  else if(str.equals("예약/자리 확인")) {
+			  @SuppressWarnings("unused")
+			  Client client = new Client();
+			  reservation.run();
 			  card.show(f,"reservation");
 	}
 
