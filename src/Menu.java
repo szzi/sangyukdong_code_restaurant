@@ -6,7 +6,7 @@ public class Menu {
 	String name;
 	int cost;
 	int sold;
-	int cogs; //Cost of goods sold (¸ÅÃâ¿ø°¡)
+	int cogs; //Cost of goods sold (ë§¤ì¶œì›ê°€)
 	
 	public Menu(String name, int cost,int cogs)
 	{
@@ -24,9 +24,9 @@ public class Menu {
 }
 
 class MakeMenu {
-	String menuName[] = {"ºÒ°í±â¹ö°Å", "Ä¡Å²¹ö°Å","Ä¡Áî¹ö°Å","Åë»õ¿ì¹ö°Å","ÇÑ¿ì¹ö°Å","°­Á¤¹ö°Å",
-			 "°¨ÀÚÆ¢±è","¾ÆÀÌ½ºÅ©¸²","½º³¼·¦",
-			 "Äİ¶ó", "»çÀÌ´Ù", "È¯Å¸","¸¶¿îÆ¾µà"};
+	String menuName[] = {"ë¶ˆê³ ê¸°ë²„ê±°", "ì¹˜í‚¨ë²„ê±°","ì¹˜ì¦ˆë²„ê±°","í†µìƒˆìš°ë²„ê±°","í•œìš°ë²„ê±°","ê°•ì •ë²„ê±°",
+			 "ê°ìíŠ€ê¹€","ì•„ì´ìŠ¤í¬ë¦¼","ìŠ¤ë‚µë©",
+			 "ì½œë¼", "ì‚¬ì´ë‹¤", "í™˜íƒ€","ë§ˆìš´í‹´ë“€"};
 				
 	int menuCost[] = {2000,3000,2000,4000,4500,3500,
 		1500,500,2500,
@@ -45,7 +45,7 @@ class MakeMenu {
 		}
 	}
 	
-	public void printMenu() {
+	static public void printMenu() {
 		for(int i = 0; i<menu.length; i++)
 		{
 			System.out.printf("%d : %s, %d \n",i,menu[i].name,menu[i].cost);
