@@ -1,4 +1,4 @@
-package reservation1;
+package restaurant1;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -34,8 +34,10 @@ public class reservation extends JFrame {
    public static String name;
 
    reservation() {
-      
-      super("reservation");
+	      super("reservation");
+	   Color color = new Color(254,206,0);
+	   Color backcolor = new Color(245,245,245);
+
       setSize(1024,768);
       setVisible(true);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,7 +47,7 @@ public class reservation extends JFrame {
       Panel3.setBorder(new EmptyBorder(5, 5, 5, 5));
       setContentPane(Panel3);
       Panel3.setLayout(null);
-      Panel3.setBackground(SystemColor.activeCaption);
+      Panel3.setBackground(backcolor);
    
       Htextfield = new JTextField();
       Htextfield.setHorizontalAlignment(SwingConstants.CENTER);
@@ -81,7 +83,7 @@ public class reservation extends JFrame {
          public void mouseClicked(MouseEvent arg0) {
             count++;
             if(count%2!=0) 
-               Hbutton1.setBackground(SystemColor.activeCaption);
+               Hbutton1.setBackground(color);
             else
                Hbutton1.setBackground(Color.LIGHT_GRAY);
             num.append(String.format("1\n"));
@@ -111,7 +113,7 @@ public class reservation extends JFrame {
          public void mouseClicked(MouseEvent arg0) {
             count++;
             if(count%2!=0)
-               Hbutton2.setBackground(SystemColor.activeCaption);
+               Hbutton2.setBackground(color);
             else Hbutton2.setBackground(Color.LIGHT_GRAY);
             
             num.append(String.format("2\n"));
@@ -132,7 +134,7 @@ public class reservation extends JFrame {
          public void mouseClicked(MouseEvent arg0) {
             count++;
             if(count%2!=0)
-               Hbutton3.setBackground(SystemColor.activeCaption);
+               Hbutton3.setBackground(color);
             else Hbutton3.setBackground(Color.LIGHT_GRAY);
             
             num.append(String.format("3\n"));
@@ -152,7 +154,7 @@ public class reservation extends JFrame {
          public void mouseClicked(MouseEvent arg0) {
             count++;
             if(count%2!=0)
-               Hbutton4.setBackground(SystemColor.activeCaption);
+               Hbutton4.setBackground(color);
             else Hbutton4.setBackground(Color.LIGHT_GRAY);
             
             num.append(String.format("4\n"));
@@ -172,7 +174,7 @@ public class reservation extends JFrame {
          public void mouseClicked(MouseEvent arg0) {
             count++;
             if(count%2!=0)
-               Hbutton5.setBackground(SystemColor.activeCaption);
+               Hbutton5.setBackground(color);
             else Hbutton5.setBackground(Color.LIGHT_GRAY);
             
             num.append(String.format("5\n"));
@@ -215,14 +217,14 @@ public class reservation extends JFrame {
             
          }
       });
-      HbackButton.setBackground(SystemColor.textHighlight);
+      HbackButton.setBackground(color);
       HbackButton.setForeground(new Color(0, 0, 128));
       HbackButton.setFont(new Font("³ª´®½ºÄù¾î¶ó¿îµå ExtraBold", Font.BOLD, 20));
       Panel3.add(HbackButton);
       HbackButton.setBounds(30, 645, 106, 74);
       
       try {
-          Thread.sleep(5000);
+          Thread.sleep(10000);
       }catch(InterruptedException e){
       }
       name=r.data;
