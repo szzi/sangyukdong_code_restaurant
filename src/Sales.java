@@ -1,13 +1,9 @@
 package restaurant;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -15,17 +11,15 @@ import javax.swing.table.TableColumnModel;
 
 import java.awt.CardLayout;
 import java.awt.GridLayout;
-import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
+
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Vector;
 import java.awt.Font;
-import java.awt.Component;
-import javax.swing.Box;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
@@ -36,51 +30,66 @@ public class Sales extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	int[] check = new int[13];
+	public Sales(){	
+		run();
+	}
 	
-	/**
-	 * Create the frame.
-	 */
-	public Sales() {			
-			
+	public void run() {			
 		p2 = new JPanel();
 			//Order order = new Order();
-		String header1[]= {"»óÇ°¸í","¼ö·®","±İ¾×"};
+		Color color = new Color(254,206,0);
+		Color color2 = new Color(235,229,217);
+		Color backcolor = new Color(245,245,245);
+		
+		String header1[]= {"ìƒí’ˆëª…","ìˆ˜ëŸ‰","ê¸ˆì•¡"};
 
-//		¸ÅÃâ ¼øÀÌÀÍ È®ÀÎ Å×ÀÌºí
+//		ë§¤ì¶œ ìˆœì´ìµ í™•ì¸ í…Œì´ë¸”
 		DefaultTableModel model1 = new DefaultTableModel(header1,0);
 		JTable stable = new JTable(model1);
+		stable.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 12));
 		int totalsales=0;
 		int profitsales=0;
 		int pprofit=0;
 		stable.setRowHeight(30);
 		
+		for(int i = 0; i<13; i++)
+		{
+			check[i]= MakeMenu.menuSold[i];
+		}
+		
 		for(int i = 0; i<MakeMenu.menu.length;i++) {
-			System.out.printf("%d,",MakeMenu.menu[i].sold);
-			if(MakeMenu.menu[i].sold!=0) {
+			System.out.printf("%s %d\n",MakeMenu.menuName[i],MakeMenu.menuSold[i]);
+			if(MakeMenu.menuSold[i]!=0) {
 				Vector<Object> contents1 = new Vector<Object>();
-				contents1.addElement(MakeMenu.menu[i].name);
-				contents1.addElement(MakeMenu.menu[i].sold);
-				contents1.addElement(MakeMenu.menu[i].cost*MakeMenu.menu[i].sold);
-				totalsales += MakeMenu.menu[i].cost*MakeMenu.menu[i].sold;
-				profitsales += (MakeMenu.menu[i].cogs*MakeMenu.menu[i].sold);
+				contents1.addElement(MakeMenu.menuName[i]);
+				contents1.addElement(MakeMenu.menuSold[i]);
+				contents1.addElement(MakeMenu.menuCost[i]*MakeMenu.menuSold[i]);
+				totalsales += MakeMenu.menuCost[i]*MakeMenu.menuSold[i];
+				profitsales += (MakeMenu.menuCogs[i]*MakeMenu.menuSold[i]);
 				model1.addRow(contents1);
+				
 			}
 			pprofit = totalsales - profitsales;
 		}
 		
-		String totalheader[]= {"ÃÑ ¸ÅÃâ"};
+		String totalheader[]= {"ì´ ë§¤ì¶œ"};
 		DefaultTableModel totalmodel = new DefaultTableModel(totalheader,0);
 		Vector<Object> total = new Vector<Object>();
 		total.addElement(totalsales);
 		totalmodel.addRow(total);
 		JTable totaltable = new JTable(totalmodel);
+		totaltable.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 12));
+		totaltable.setRowHeight(50);
 		
-		String profitheader[]= {"¼øÀÌÀÍ"};
+		String profitheader[]= {"ìˆœì´ìµ"};
 		DefaultTableModel profitmodel = new DefaultTableModel(profitheader,0);
 		Vector<Object> profit = new Vector<Object>();
 		profit.addElement(pprofit);
 		profitmodel.addRow(profit);
 		JTable profittable = new JTable(profitmodel);
+		profittable.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 12));
+		profittable.setRowHeight(50);
 		
 		  TableColumnModel columnModel = stable.getColumnModel();
 		  TableColumn column0 = columnModel.getColumn(0); 
@@ -102,63 +111,114 @@ public class Sales extends JFrame {
 		  TableColumn pcolumn = columnprofitModel.getColumn(0); 
 	      pcolumn.setCellRenderer(renderer1);
 		
-		String mainrank[]= {"¼øÀ§","¼ö·®","ÁÖ¸Ş´º"};
+		String mainrank[]= {"ìˆœìœ„","ìˆ˜ëŸ‰","ì£¼ë©”ë‰´"};
 		DefaultTableModel model2 = new DefaultTableModel(mainrank,0);
 		JTable maintable = new JTable(model2);
-		maintable.setFont(new Font("±¼¸²", Font.PLAIN, 13));
 		maintable.setRowHeight(30);
-//		¼øÀ§ ¸Å±â±â ¼ÒÆÃ
+		maintable.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 13));
+		maintable.setRowHeight(30);
+//		ìˆœìœ„ ë§¤ê¸°ê¸° ì†ŒíŒ…
 		sort(0,5);
+		
 		int cnt1=1;
-		for(int i = 0; i<=5;i++) {
-			if(MakeMenu.menu[i].sold!=0) {
-				if(cnt1==3)break;
-				Vector<Object> maincontents = new Vector<Object>();
-				maincontents.addElement(cnt1);
-				maincontents.addElement(MakeMenu.menu[i].sold);
-				maincontents.addElement(MakeMenu.menu[i].name);	
-				model2.addRow(maincontents);
+		
+		for(int k = 0;k<=5;k++)
+		{
+			System.out.printf("%d,", check[k]);
+		}
+		
+		for(int i = 0;i<=5;i++) {
+			
+			int j =check[i];
+			if(MakeMenu.menuSold[j]!=0) {
+				if(cnt1==3) {
+					break;
+				}
+				int k=0;
+				
+				for(k = 0;k<=5;k++)
+				{
+					if(j==MakeMenu.menuSold[k])
+					{	
+						System.out.printf("%d<=%d,", k,j);
+						Vector<Object> maincontents = new Vector<Object>();
+						maincontents.addElement(cnt1);
+						maincontents.addElement(MakeMenu.menuSold[k]);
+						maincontents.addElement(MakeMenu.menuName[k]);	
+						model2.addRow(maincontents);
+					}
+				}
+								
 			}
 			cnt1++;
 		}
 		
-		String siderank[]= {"¼øÀ§","¼ö·®","»çÀÌµå¸Ş´º"};
+		String siderank[]= {"ìˆœìœ„","ìˆ˜ëŸ‰","ì‚¬ì´ë“œë©”ë‰´"};
 		DefaultTableModel model3 = new DefaultTableModel(siderank,0);
 		JTable sidetable = new JTable(model3);
-		sidetable.setFont(new Font("±¼¸²", Font.PLAIN, 13));
 		sidetable.setRowHeight(30);
-//		¼øÀ§ ¸Å±â±â ¼ÒÆÃ
+		sidetable.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 13));
+		sidetable.setRowHeight(30);
+//		ìˆœìœ„ ë§¤ê¸°ê¸° ì†ŒíŒ…
 		sort(6,8);
 		int cnt2=1;
 		for(int i = 6; i<=8;i++) {
-			if(MakeMenu.menu[i].sold!=0) {
-				if(cnt2==3)break;
-				Vector<Object> sidecontents = new Vector<Object>();
-				sidecontents.addElement(cnt2);
-				sidecontents.addElement(MakeMenu.menu[i].sold);
-				sidecontents.addElement(MakeMenu.menu[i].name);
-				model3.addRow(sidecontents);
+			int j2 =check[i];
+			if(MakeMenu.menuSold[j2]!=0) {
+				if(cnt2==3) {
+					break;
+				}
+				
+				
+				for(int k2 = 6;k2<=8;k2++)
+				{
+					if(j2==MakeMenu.menuSold[k2]) {
+						System.out.printf("%d<=%d,", k2,j2);
+						Vector<Object> sidecontents = new Vector<Object>();
+						sidecontents.addElement(cnt2);
+						sidecontents.addElement(MakeMenu.menuSold[k2]);
+						sidecontents.addElement(MakeMenu.menuName[k2]);	
+						model3.addRow(sidecontents);
+					}
+						
+				}
+				
 			}
 			cnt2++;
 		}		
 		
-		String drinkrank[]= {"¼øÀ§","¼ö·®","À½·á"};
+		String drinkrank[]= {"ìˆœìœ„","ìˆ˜ëŸ‰","ìŒë£Œ"};
 		DefaultTableModel model4 = new DefaultTableModel(drinkrank,0);
 		JTable drinktable = new JTable(model4);
-		drinktable.setFont(new Font("±¼¸²", Font.PLAIN, 13));
 		drinktable.setRowHeight(30);
-//		¼øÀ§ ¸Å±â±â ¼ÒÆÃ
+		drinktable.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 13));
+		drinktable.setRowHeight(30);
+//		ìˆœìœ„ ë§¤ê¸°ê¸° ì†ŒíŒ…
 		sort(9,12);
 		int cnt3=1;
 		
 		for(int i = 9; i<=12;i++) {
-			if(MakeMenu.menu[i].sold!=0) {
-				if(cnt3==3) break;
-				Vector<Object> drinkcontents= new Vector<Object>();
-				drinkcontents.addElement(cnt3);
-				drinkcontents.addElement(MakeMenu.menu[i].sold);
-				drinkcontents.addElement(MakeMenu.menu[i].name);
-				model4.addRow(drinkcontents);
+			int j3 =check[i];
+			if(MakeMenu.menuSold[j3]!=0) {
+				if(cnt3==3) {
+					break;
+				}
+				
+				
+				for(int k3 = 9;k3<=12;k3++)
+				{
+					if(j3==MakeMenu.menuSold[k3]) {
+						System.out.printf("%d<=%d,", k3,j3);
+						Vector<Object> drinkcontents = new Vector<Object>();
+						drinkcontents.addElement(cnt3);
+						drinkcontents.addElement(MakeMenu.menuSold[k3]);
+						drinkcontents.addElement(MakeMenu.menuName[k3]);	
+						model4.addRow(drinkcontents);
+					}
+						
+				}
+				
+				
 			}
 			cnt3++;
 		}
@@ -196,7 +256,7 @@ public class Sales extends JFrame {
 		//contentPane.setLayout(new CardLayout(0, 0));
 		
 		
-		p2.setBackground(new Color(255, 228, 225));
+		p2.setBackground(backcolor);
 		p2.setForeground(Color.BLACK);
 		//contentPane.add(p2, "name_359157631449594");
 		p2.setLayout(null);
@@ -205,7 +265,7 @@ public class Sales extends JFrame {
 		Contentspanel.setBounds(0, 0, 996, 534);
 		p2.add(Contentspanel);
 		
-//		content°¡ µé¾î°¡´Â ÆÇÀº cardlayoutÀ¸·Î ¸¸µé°Å¾ß
+//		contentê°€ ë“¤ì–´ê°€ëŠ” íŒì€ cardlayoutìœ¼ë¡œ ë§Œë“¤ê±°ì•¼
 		CardLayout card = new CardLayout(0,0);
 		Contentspanel.setLayout(card);
 		
@@ -214,13 +274,13 @@ public class Sales extends JFrame {
 		sales_panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane(stable);
-		scrollPane.setBounds(0, 0, 996, 357);
+		scrollPane.setBounds(12, 0, 984, 357);
 		sales_panel.add(scrollPane);
 		
-//		p2ÆÇÀº gridlayoutÀ¸·Î ÇÒ°Ô
+//		p2íŒì€ gridlayoutìœ¼ë¡œ í• ê²Œ
 		ranking_panel.setLayout(new GridLayout(0, 2, 0, 0));
 		
-//		tableÀ» ÆÇ À§¿¡ ¿Ã¸®±â
+//		tableì„ íŒ ìœ„ì— ì˜¬ë¦¬ê¸°
 		JScrollPane scrollPane_1 = new JScrollPane(maintable);
 		ranking_panel.add(scrollPane_1);
 		
@@ -234,30 +294,33 @@ public class Sales extends JFrame {
 		ranking_panel.add(label);
 		
 		JPanel Buttonpanel = new JPanel();
-		Buttonpanel.setBounds(0, 535, 996, 75);
+		Buttonpanel.setBounds(10, 535, 986, 75);
 		p2.add(Buttonpanel);
 		
-//		Contentspanel¿¡ panel Ãß°¡
+//		Contentspanelì— panel ì¶”ê°€
 		Contentspanel.add("aa",sales_panel);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 360, 996, 162);
 		sales_panel.add(panel);
 		
-		//		table cell ³ôÀÌ Á¶Á¤
+		//		table cell ë†’ì´ ì¡°ì •
 				totaltable.setRowHeight(30);
 				profittable.setRowHeight(30);
-				panel.setLayout(new GridLayout(0, 1, 0, 0));
+				panel.setLayout(null);
 				JScrollPane totalscrollPane = new JScrollPane(totaltable);
+				totalscrollPane.setBounds(12, 0, 984, 81);
 				panel.add(totalscrollPane);
 				
 				JScrollPane profitscrollPane = new JScrollPane(profittable);
+				profitscrollPane.setBounds(12, 81, 984, 81);
 				panel.add(profitscrollPane);
 		Contentspanel.add("bb",ranking_panel);
 		
-//		¹öÆ°
-		JButton Sales = new JButton("¸ÅÃâ / ¼øÀÌÀÍ");
-		Sales.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+//		ë²„íŠ¼
+		JButton Sales = new JButton("ë§¤ì¶œ / ìˆœì´ìµ");
+		Sales.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
+		Sales.setBackground(color);
 		Sales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					card.show(Contentspanel,"aa");
@@ -266,8 +329,9 @@ public class Sales extends JFrame {
 		Buttonpanel.setLayout(new GridLayout(0, 2, 0, 0));
 		Buttonpanel.add(Sales);
 		
-		JButton Ranking = new JButton("ÆÇ¸Å¼øÀ§");
-		Ranking.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		JButton Ranking = new JButton("íŒë§¤ìˆœìœ„");
+		Ranking.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
+		Ranking.setBackground(color);
 		Ranking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				card.show(Contentspanel,"bb");
@@ -275,8 +339,9 @@ public class Sales extends JFrame {
 		});
 		Buttonpanel.add(Ranking);
 		
-		JButton BackButton = new JButton("µÚ·Î°¡±â");
-		BackButton.setBackground(new Color(221, 160, 221));
+		JButton BackButton = new JButton("ë’¤ë¡œê°€ê¸°");
+		BackButton.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
+		BackButton.setBackground(color);
 		BackButton.setForeground(Color.BLACK);
 		BackButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -284,41 +349,27 @@ public class Sales extends JFrame {
 				Test.card.show(Test.f,"main_screen");
 			}
 		});
-		BackButton.setBounds(14, 638, 149, 68);
+		BackButton.setBounds(12, 629, 240, 68);
 		p2.add(BackButton);
 		
 	}
 	
-	
 
 	public void sort(int l, int r) {
-        int left = l;
-        int right = r;
-        Menu pivot = MakeMenu.menu[(l + r) / 2]; // pivot °¡¿îµ¥ ¼³Á¤ (ÃÖ¾ÇÀÇ °æ¿ì ¹æÁö)
- 
-        do {
-            while (MakeMenu.menu[left].sold > pivot.sold)
-                left++;
-            while (MakeMenu.menu[right].sold < pivot.sold)
-                right--;
- 
-            if (left <= right) {
-            		Menu temp = MakeMenu.menu[left];
-                    MakeMenu.menu[left] = MakeMenu.menu[right];
-                    MakeMenu.menu[right] = temp;
-                    left++;
-                    right--;
-                	
-            }
-        } while (left <= right);
- 
-        if (l < right) {
-            sort( l, right);
-        }
-        if (r > left) {
-            sort(left, r);
- 
-        }
-    }
+		int[] arr = new int[r-l +1];
+	
+		for(int i = l; i<=r; i++)
+		{
+			arr[i-l] = MakeMenu.menuSold[i];
+		}
+		
+        Arrays.sort(arr);
+        
+        for(int i = 0; i<=r-l; i++)
+		{
+			check[i] = arr[r-l-i];
+		}
+}
+	
 }
 
