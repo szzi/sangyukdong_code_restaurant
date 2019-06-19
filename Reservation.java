@@ -1,5 +1,4 @@
 package restaurant;
-
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -211,13 +210,15 @@ public class Reservation extends JFrame {
    }
    
    public void run() {
-	   try {
-	          Thread.sleep(5000);
-	      }catch(InterruptedException e){
-	      }
-	   
+		  @SuppressWarnings("unused")
+		  Client client = new Client();
+		   try {
+		          Thread.sleep(5000);
+		      }catch(InterruptedException e){
+		      }
+		   
 	   	 name=Client.data;
-	      System.out.println(name);
+	     System.out.println(name);
 	      
 	      JTextArea nname = new JTextArea();//name
 	      nname.setEditable(false);

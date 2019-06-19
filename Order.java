@@ -6,9 +6,8 @@ public class Order extends MakeMenu{
 
 	static int[] count = new int[13];
 	static int[] pre_count = new int[13]; //영수증 출력 위해 이전 주문 저장
-	static int cnt=0;
-	
-	public Order() {		
+	int cnt=0;
+	public Order() {
 		Arrays.fill(Order.count, 0);
 	}	
 		
@@ -31,12 +30,13 @@ public class Order extends MakeMenu{
 			menu[i].sold += Order.count[i];
 		}
 	}
-
+	
 	public void print() {
 		for(int i = 0; i<menu.length;i++)
 		{
 			System.out.printf("%d ",menu[i].sold);
 		}
-
+			System.out.printf("\n");
+			
 	}
 }

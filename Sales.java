@@ -297,7 +297,6 @@ public class Sales extends JFrame {
 		
 	}
 	
-	
 
 	public void sort(int l, int r) {
         int left = l;

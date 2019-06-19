@@ -19,7 +19,7 @@ public class Test extends Frame implements ActionListener{
 	MainScreen mainscreen;
 	Sales sales;
 	Receipt receipt;
-	Reservation reservation;
+//	Reservation reservation;
 	//JPanel contentPane;
 	//private JPanel contentPane;
 
@@ -58,7 +58,7 @@ public class Test extends Frame implements ActionListener{
 	mainscreen = new MainScreen();
 	sales = new Sales();
 	receipt = new Receipt();
-	reservation = new Reservation();
+//	reservation = new Reservation();
 	
 	JButton btn1,btn2,btn3;
 	
@@ -86,7 +86,7 @@ public class Test extends Frame implements ActionListener{
 	mainscreen.panel_4.add(btn3);
 	
 	f.add("main_screen",mainscreen.p1);
-	f.add("reservation",reservation.p3);
+
 	
 	card.show(f, "main_screen");
 	
@@ -109,13 +109,16 @@ public class Test extends Frame implements ActionListener{
 			  //이와같은 방법으로 다른 카드(Panel)로의 변환이 가능하다.
 		  }
 		  else if(str.equals("정산")){
+			  
 			  sales.run();
 			  f.add("sales",sales.p2);
 			  card.show(f,"sales");
 		  }
 		  else if(str.equals("예약/자리 확인")) {
-			  @SuppressWarnings("unused")
-			  Client client = new Client();
+//			  @SuppressWarnings("unused")
+//			  Client client = new Client();
+			  Reservation reservation = new Reservation();  
+			  f.add("reservation",reservation.p3);
 			  reservation.run();
 			  card.show(f,"reservation");
 	}
