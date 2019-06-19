@@ -17,7 +17,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Vector;
 import java.awt.Font;
 import java.awt.Color;
@@ -39,6 +38,7 @@ public class Sales extends JFrame {
 		p2 = new JPanel();
 			//Order order = new Order();
 		Color color = new Color(254,206,0);
+		@SuppressWarnings("unused")
 		Color color2 = new Color(235,229,217);
 		Color backcolor = new Color(245,245,245);
 		
