@@ -2,7 +2,7 @@ package restaurant;
 
 import java.util.Arrays;
 
-public class Order extends MakeMenu{
+public class Order{
 
 	static int[] count = new int[13];
 	static int[] pre_count = new int[13]; //영수증 출력 위해 이전 주문 저장
@@ -12,7 +12,7 @@ public class Order extends MakeMenu{
 	}	
 		
 	public void setCount(int index) {
-			Order.count[index] +=1;
+			Order.count[index] = Order.count[index] + 1;
 	}
 	
 	public int getCount(int index) {
@@ -20,18 +20,19 @@ public class Order extends MakeMenu{
 	}
 	
 	public void save() {
-		for(int i = 0; i<menu.length;i++)
+		for(int i = 0; i<MakeMenu.menu.length;i++)
 		{
 			Order.pre_count[i] = Order.count[i];
-			menu[i].sold += Order.count[i];
+			MakeMenu.menuSold[i] = MakeMenu.menuSold[i] + Order.count[i];
 		}
 	}
 	
 	public void print() {
-		for(int i = 0; i<menu.length;i++)
+		for(int i = 0; i<MakeMenu.menu.length;i++)
 		{
-			System.out.printf("%d ",menu[i].sold);
+			System.out.printf("%d/%d ",Order.count[i],MakeMenu.menuSold[i]);
 		}
-
+			System.out.printf("\n");
+			
 	}
 }
